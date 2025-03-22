@@ -1,4 +1,6 @@
-import { useState } from 'react'
+import { useState , useEffect} from 'react'
+import { ethers } from 'ethers'
+import { ContractABI, ContractAddress } from './Constants/constants'
 import './index.css' // Make sure this path is correct
 
 function App() {
