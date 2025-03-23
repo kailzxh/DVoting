@@ -1,23 +1,19 @@
 const hre = require("hardhat");
 
 async function main() {
-    
     const Voting = await hre.ethers.getContractFactory("Voting");
-
-    
-    const votingContract = await Voting.deploy(["Kailash", "Mark", "Mike", "Leblon"], 120);
-
-   
-    await votingContract.waitForDeployment();  
-
-   
-    console.log("Contract deployed at:", await votingContract.getAddress());
+    // Deploy without .deployed()
+    const votingContract = await Voting.deploy(
+        ["Kailash", "Mark", "Mike", "Leblon"],
+        120
+    );
+    // Use .target instead of .address
+    console.log("Contract deployed to:", votingContract.target);
 }
 
-
 main()
-    .then(() => process.exit(0)) 
-    .catch(error => {
-        console.error("Deployment failed:", error);
-        process.exit(1); 
+    .then(() => process.exit(0))
+    .catch((error) => {
+        console.error(error);
+        process.exit(1);
     });
